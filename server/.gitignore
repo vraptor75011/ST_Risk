@@ -90,4 +90,4 @@ logs/
 server_log.txt
 
 # Config *.yaml (database, etc ...)
-config/
+config/*.yaml
