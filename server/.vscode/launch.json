@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Development Server",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/dev.dart",
+      "vmAdditionalArgs": ["--observe"]
+    },
+    {
+      "name": "Reset Database",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/migrate.dart",
+      "args": ["refresh"]
+    },
+    {
+      "name": "Production Server",
+      "type": "dart",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/prod.dart",
+      "env": {
+        "ANGEL_ENV": "production"
+      }
+    }
+  ]
+}
