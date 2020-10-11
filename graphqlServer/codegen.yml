@@ -1,0 +1,12 @@
+watch: true
+overwrite: true
+schema: './src/schema/graphql/schema.gql'
+documents: null
+generates:
+  src/__generated__/generated-types.ts:
+    config:
+      mappers: User:'./src/database/models/User.ts'
+        Pet:'./src/database/models/Pet.ts'
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'
