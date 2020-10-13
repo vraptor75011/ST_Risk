@@ -21,9 +21,9 @@ export type JSONArray = Array<JSON>;
 
 export type UserFields = {
   id: number;
-  full_name: string;
-  country_code: string;
-  created_at: string;
+  fullName: string;
+  countryCode: string;
+  createdAt: string;
 }
     
 export type UserIds = unknown;
@@ -31,20 +31,20 @@ export type UserIds = unknown;
 export type UserEnums = unknown;
     
 export type UserAssociations = {
-
+  pets: [PetFindManyBuilder, PetPaginateBuilder];
 }
     
 export type UserCreateFields = {
   id: number;
-  full_name?: string;
-  country_code?: string;
-  created_at?: string;
+  fullName?: string;
+  countryCode?: string;
+  createdAt?: string;
 };
     
 export type UserUpdateFields = {
-  full_name?: string;
-  country_code?: string;
-  created_at?: string;
+  fullName?: string;
+  countryCode?: string;
+  createdAt?: string;
 };
     
 export type UserFindOneBuilder<TSelected extends Pick<UserFields, any> = UserFields> = FindOneBuilder<
@@ -103,9 +103,9 @@ export type UserUpdateByIdBuilder = UpdateByIdBuilder<UserUpdateFields>
 export type PetFields = {
   id: number;
   name: string;
-  owner_id: number;
+  ownerId: number;
   specie: Species;
-  created_at: string;
+  createdAt: string;
 }
     
 export type PetIds = unknown;
@@ -113,22 +113,23 @@ export type PetIds = unknown;
 export type PetEnums = Species;
     
 export type PetAssociations = {
-
+  owner: [UserFindOneBuilder, UserPaginateBuilder];
 }
     
 export type PetCreateFields = {
   id: number;
   name?: string;
-  owner_id: number;
+  ownerId: number;
   specie?: Species;
-  created_at?: string;
+  createdAt?: string;
 };
     
 export type PetUpdateFields = {
+  id?: number;
   name?: string;
-  owner_id?: number;
+  ownerId?: number;
   specie?: Species;
-  created_at?: string;
+  createdAt?: string;
 };
     
 export type PetFindOneBuilder<TSelected extends Pick<PetFields, any> = PetFields> = FindOneBuilder<

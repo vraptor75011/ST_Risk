@@ -4,7 +4,7 @@
   "description": "graphqlServer for ST_Risk backend",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \" nodemon ./dist/bundle.js \" \" webpack \" ",
+    "dev": "concurrently \" nodemon ./dist/bundle.js \" \" webpack --watch --config webpack.config.js\" ",
     "build": "webpack",
     "start": "",
     "migrate:up": "knex --knexfile ./src/database/knexfile.ts migrate:latest",

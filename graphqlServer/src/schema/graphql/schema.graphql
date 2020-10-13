@@ -10,7 +10,7 @@ type User @model(table: "users", pk: "UserId") {
   fullName: String
   countryCode: String
   createdAt: String
-  pets: Pet @relate(on: [{ from: "PetId", to: "PetId" }])
+  pets: [Pet] @relate(on: { from: "PetId", to: "PetId" })
 }
 
 type Pet @model(table: "pets", pk: "id") {

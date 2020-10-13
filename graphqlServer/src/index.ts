@@ -1,15 +1,13 @@
 import { ApolloServer, Config } from "apollo-server-koa";
 import * as dotenv from 'dotenv';
-import Knex from 'knex';
+//import Knex from 'knex';
 import Koa from "koa";
 import KoaRouter from "koa-router";
-import { Model } from 'objection';
-import dbconfig from './database/config';
 import schema from './schema';
 
-const db = Knex(dbconfig["development"]);
+//const db = Knex(dbconfig["development"]);
 
-Model.knex(db);
+//Model.knex(db);
 dotenv.config({ path: process.env.PWD + '/.env' });
 
 async function main() {
