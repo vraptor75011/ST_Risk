@@ -5,7 +5,7 @@ enum Species {
   REPTILES
 }
 
-type User @model(table: "users", pk: "id") {
+type User @model(table: "user", pk: "id") {
   id: Int!
   full_name: String
   country_code: String
