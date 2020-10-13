@@ -1,7 +1,9 @@
-import { makeExecutableSchema } from 'graphql-tools';
-import schema from './graphql/schema.gql';
-import { pet, user } from './resolvers';
+import Knex from 'knex';
+import { createSqlmancerClient } from "sqlmancer";
+import dbconfig from '../database/config';
+import { SqlmancerClient } from './graphql/generated';
 
-const resolvers=[user,pet];
+const db = Knex(dbconfig["development"]);
 
-export default makeExecutableSchema({typeDefs:schema, resolvers: resolvers as any});
+const client = createSqlmancerClient<SqlmancerClient>(__filename, db);
+
