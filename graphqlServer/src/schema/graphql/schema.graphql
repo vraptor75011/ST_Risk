@@ -5,57 +5,35 @@ enum Species {
   REPTILES
 }
 
-type User @model(table: "user", pk: "id") {
-  id: Int!
-  full_name: String
-  country_code: String
-  created_at: String
-  pets: [Pet]
+type User @model(table: "users", pk: "UserId") {
+  id: Int! @col(name: "UserId")
+  fullName: String
+  countryCode: String
+  createdAt: String
+  pets: Pet @relate(on: [{ from: "PetId", to: "PetId" }])
 }
 
 type Pet @model(table: "pets", pk: "id") {
-  id: Int!
+  id: Int! @col(name: "PetId")
   name: String
-  owner_id: Int!
+  ownerId: Int!
   specie: Species
-  created_at: String
-  owner: User
+  createdAt: String
+  owner: User @relate(on: { from: "UserID", to: "UserID" })
 }
 
-input createUserInput {
-  full_name: String!
-  country_code: String!
-}
-
-input createPetInput {
-  name: String!
-  owner_id: Int!
-  specie: Species!
-}
-
-input updateUserInput {
-  id: Int!
-  full_name: String
-  country_code: String
-}
-
-input updatePetInput {
-  id: Int!
-  name: String!
-}
-
-type Query @sqlmancer(dialect: POSTGRES) {
-  pets: [Pet]
-  users: [User]
+type Query @sqlmancer(dialect: POSTGRES, transformFieldNames: PASCAL_CASE) {
+  pets: [Pet] @many
+  users: [User] @many
   user(id: Int!): User
   pet(id: Int!): Pet
 }
 
 type Mutation {
-  createPet(pet: createPetInput!): Pet
-  createUser(user: createUserInput!): User
+  createPet: Pet @input(action: CREATE)
+  createUser: User @input(action: CREATE)
   deletePet(id: Int!): String
   deleteUser(id: Int!): String
-  updatePet(pet: updatePetInput!): Pet
-  updateUser(user: updateUserInput!): User
+  updatePet(id: Int!): Pet @input(action: UPDATE)
+  updateUser(id: Int!): User @input(action: UPDATE)
 }
