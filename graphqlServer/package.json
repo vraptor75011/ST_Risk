@@ -21,7 +21,8 @@
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
     "objection": "^2.2.3",
-    "pg": "^8.4.1"
+    "pg": "^8.4.1",
+    "sqlmancer": "^0.3.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.10",

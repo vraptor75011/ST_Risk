@@ -5,7 +5,7 @@ enum Species {
   REPTILES
 }
 
-type User {
+type User @model(table: "users", pk: "id") {
   id: Int!
   full_name: String
   country_code: String
@@ -13,7 +13,7 @@ type User {
   pets: [Pet]
 }
 
-type Pet {
+type Pet @model(table: "pets", pk: "id") {
   id: Int!
   name: String
   owner_id: Int!
@@ -44,7 +44,7 @@ input updatePetInput {
   name: String!
 }
 
-type Query {
+type Query @sqlmancer(dialect: POSTGRES) {
   pets: [Pet]
   users: [User]
   user(id: Int!): User
