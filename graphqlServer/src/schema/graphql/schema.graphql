@@ -5,24 +5,24 @@ enum Species {
   REPTILES
 }
 
-type User @model(table: "users", pk: "UserId") {
-  id: Int! @col(name: "UserId")
-  fullName: String
-  countryCode: String
-  createdAt: String
-  pets: [Pet] @relate(on: { from: "PetId", to: "PetId" })
+type User @model(table: "users", pk: "id") {
+  id: Int! @hasDefault
+  full_name: String
+  country_code: String
+  created_at: String
+  pets: [Pet] @relate(on: { from: "id", to: "id" })
 }
 
 type Pet @model(table: "pets", pk: "id") {
-  id: Int! @col(name: "PetId")
+  id: Int!
   name: String
-  ownerId: Int!
+  owner_id: Int!
   specie: Species
-  createdAt: String
-  owner: User @relate(on: { from: "UserID", to: "UserID" })
+  created_at: String
+  owner: User @relate(on: { from: "id", to: "id" })
 }
 
-type Query @sqlmancer(dialect: POSTGRES, transformFieldNames: PASCAL_CASE) {
+type Query @sqlmancer(dialect: POSTGRES) {
   pets: [Pet] @many
   users: [User] @many
   user(id: Int!): User
