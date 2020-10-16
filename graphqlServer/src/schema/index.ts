@@ -54,6 +54,7 @@ const resolvers: IResolvers = {
             await Pet.updateById(args.id, args.input).execute()
             return Pet.findById(args.id).resolveInfo(info).execute()
         }
+       // 
     }
 }
   
