@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js run
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add type-graphql typeorm reflect-metadata
 
 PATH: 
   /Users/vraptor/.pyenv/shims:/Volumes/Macintosh HD2/WebDev/flutter/bin:/Users/vraptor/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/opt/X11/bin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/Library/Apple/usr/bin:/Users/vraptor/.pub-cache/bin
@@ -14,9 +14,9 @@ Platform:
   darwin x64
 
 Trace: 
-  Invariant Violation: Action must exists
-      at invariant (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:2168:15)
-      at Object.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:61463:9)
+  SyntaxError: /Volumes/Macintosh HD2/WebDev/ST_Risk/graphqlServer/package.json: Unexpected token } in JSON at position 680
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:304:30)
       at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:315:13
@@ -28,7 +28,7 @@ npm manifest:
     "description": "graphqlServer for ST_Risk backend",
     "main": "index.js",
     "scripts": {
-      "dev": "concurrently \" nodemon ./dist/bundle.js \" \" webpack \" ",
+      "dev": "concurrently \" nodemon ./dist/bundle.js \" \" webpack --watch --config webpack.config.js\" ",
       "build": "webpack",
       "start": "",
       "migrate:up": "knex --knexfile ./src/database/knexfile.ts migrate:latest",
@@ -41,12 +41,9 @@ npm manifest:
       "dotenv": "^8.2.0",
       "graphql": "^15.3.0",
       "graphql-tools": "^6.2.4",
-      "knex": "^0.21.6",
       "koa": "^2.13.0",
       "koa-router": "^9.4.0",
-      "objection": "^2.2.3",
       "pg": "^8.4.1",
-      "sqlmancer": "^0.3.3"
     },
     "devDependencies": {
       "@graphql-codegen/cli": "^1.17.10",
