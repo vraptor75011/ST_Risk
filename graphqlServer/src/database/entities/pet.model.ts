@@ -1,7 +1,7 @@
 
 import { Field, ID, ObjectType, registerEnumType } from "type-graphql";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-import User from './User';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from './user.model';
 
 export enum Species {
     BIRDS = "BIRDS",
@@ -9,34 +9,37 @@ export enum Species {
     MAMMALS = "MAMMALS",
     REPTILES = "REPTILES"
 }
-  
+
 registerEnumType(Species, {
     name: "Species"
 })
 
-@Entity()
 @ObjectType()
-export default class Pet extends BaseEntity {
-    @Field(() => ID)
+@Entity('pets')
+class Pet {
+    @Field(type => ID)
     @PrimaryGeneratedColumn()
     id: string;
 
-    @Field(() => String)
+    @Field()
     @Column()
     name: string;
 
-    @Field(() => ID)
+    @Field(type => ID)
     @Column()
-    owner_id: string;
+    ownerId: string;
 
-    @Field(() => Species)
+    @Field(type => Species)
     @Column()
     specie: Species;
 
-    @Field(() => String)
+    @Field()
     @CreateDateColumn()
     created_at: Date
 
-    @Field(() => User)
-    owner: User;
+    @Field(type => User)
+    @ManyToOne(() => User, user => user.pets)
+    owner?: User;
 }
+
+export { Pet };

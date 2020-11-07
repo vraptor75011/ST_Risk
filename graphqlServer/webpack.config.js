@@ -3,7 +3,8 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
+  devtool: 'inline-source-map',
   entry: './src/index.ts',
   target: 'node',
   externals: [nodeExternals(), { knex: 'commonjs knex' }],

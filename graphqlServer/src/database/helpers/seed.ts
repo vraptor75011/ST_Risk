@@ -1,13 +1,14 @@
-import { getRepository } from "typeorm";
-import { Pet, User } from "../entities";
+import { petRepository, userRepository } from "../entities";
 
 export async function seedDatabase() {
-    const userRepository = getRepository(User);
-    const petRepository = getRepository(Pet);
+//    const userRepository = getRepository(User);
+//    const petRepository = getRepository(Pet);
 
     const defaultUser = userRepository.create({
         full_name: "Olivier",       
     })
+
+    console.log(defaultUser);
 
     await userRepository.save(defaultUser);
 
@@ -18,6 +19,7 @@ export async function seedDatabase() {
         {
             name: "Manuia"
         }]);
+    
     await petRepository.save(pets);
 
     return { defaultUser };
