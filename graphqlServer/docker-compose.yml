@@ -1,17 +1,41 @@
 version: '3.8'
 
 services:
-  postgres:
-    container_name: postgres_container
-    image: postgres
+  postgres_test:
+    container_name: postgres_test_container
+    image: postgres:13
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PG_DATA: /var/lib/postgresql/data
     volumes:
-      - postgres:/Users/data/postgres
+      - ./db/test:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     restart: unless-stopped
 
-volumes:
-  postgres:
+  postgres_dev:
+    container_name: postgres_dev_container
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./db/dev:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
+
+  postgres_test:
+    container_name: postgres_test_container
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./db/test:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    restart: unless-stopped

@@ -11,3 +11,4 @@ declare module '*.gql' {
   
     export = Schema
 }
+
