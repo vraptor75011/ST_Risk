@@ -1,4 +1,4 @@
-import { petRepository, userRepository } from "../entities";
+import { petRepository, userRepository } from "../utils";
 
 export async function seedDatabase() {
 //    const userRepository = getRepository(User);

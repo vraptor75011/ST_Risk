@@ -1,7 +1,7 @@
 
 import { Field, ID, ObjectType, registerEnumType } from "type-graphql";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from './user.model';
+import { User } from '../User/user.model';
 
 export enum Species {
     BIRDS = "BIRDS",

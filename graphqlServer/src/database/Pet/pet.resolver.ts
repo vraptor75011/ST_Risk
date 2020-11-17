@@ -1,6 +1,6 @@
 import { Query, Resolver } from "type-graphql";
-import { petRepository } from '../entities';
-import { Pet } from '../entities/pet.model';
+import { petRepository } from '../utils';
+import { Pet } from './pet.model';
 
 @Resolver()
 export class PetResolver {

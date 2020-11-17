@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from "type-graphql";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Pet } from './pet.model';
+import { Pet } from '../Pet/pet.model';
 
 @ObjectType()
 @Entity('users')

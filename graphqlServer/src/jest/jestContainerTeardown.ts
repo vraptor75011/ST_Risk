@@ -5,7 +5,7 @@ const teardown = async () => {
     //     await knex.destroy();
 
 /* stop Postgres contrainer */
-    console.log(pgContainer);
+//    console.log(pgContainer);
     await pgContainer.stop();
 }
 

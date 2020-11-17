@@ -2,7 +2,7 @@ import { Connection, createConnection, QueryRunner } from 'typeorm';
 import createDatabasePerTest from '../../../jest/utils/createDatabasePerTest';
 import { config } from '../../utils/orm.config';
 
-describe('User test suite', () => {
+describe('Pet test suite', () => {
   
     let connection: Connection;
     let queryRunner: QueryRunner;
@@ -21,6 +21,6 @@ describe('User test suite', () => {
         connection.close();
     });
 
-    test('User must be created', () => {
+    test('Pet must be created', () => {
     });
 });
