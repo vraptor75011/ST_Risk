@@ -12,9 +12,9 @@ const createDatabasePerTest = async (databaseName: string) => {
 
     const client = new Client(config);
 
-    client.connect();
-    client.query(`CREATE DATABASE "${databaseName}"`)
-    .then(()=> client.end())
+    await client.connect();
+    await client.query(`CREATE DATABASE "${databaseName}"`)
+    await client.end()
 }
 
 export default createDatabasePerTest;

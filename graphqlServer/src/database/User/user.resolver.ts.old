@@ -1,0 +1,27 @@
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { InjectRepository } from "typeorm-typedi-extensions";
+import { typeOrmConfigWithConnectionName } from '../utils/orm.config.with.connection.name';
+import { CreateUserInput } from './user.dto';
+import { User } from './user.model';
+import { UserRepository } from './user.repository';
+
+@Resolver(User)
+export class UserResolver {
+
+    constructor(
+        connectionName:string,
+        @InjectRepository(User, typeOrmConfigWithConnectionName.name as string) private readonly userRepository:UserRepository
+    ) { }
+    
+    @Query(returns => [User])
+    users() {
+        return this.userRepository.find();
+    }
+
+    @Mutation()
+    addUser(@Arg("data") newUserData: CreateUserInput): User {
+        const user = this.userRepository.create(newUserData);
+        this.userRepository.save(user)
+        return user
+    }
+}

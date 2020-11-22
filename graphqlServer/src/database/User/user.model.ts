@@ -1,30 +1,30 @@
 import { Field, ID, ObjectType } from "type-graphql";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Pet } from '../Pet/pet.model';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+//import { Pet } from '../pet/pet.model';
 
 // User Model
 @ObjectType()
 @Entity('users')
 class User {
     @Field(type => ID)
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("increment")
     id: string;
 
     @Field()
-    @Column()
-    full_name?: string;
+    @Column({type: "varchar", length: 60, nullable: false})
+    full_name: string;
 
     @Field()
-    @Column({nullable: true})
-    country_code?: string;
+    @Column({type: "varchar", length: 10, nullable: false})
+    country_code: string;
     
     @Field()
     @CreateDateColumn()
     created_at: Date;
 
-    @Field(type => [Pet])
-    @OneToMany(() => Pet, pet => pet.owner)
-    pets?: Pet[];
+//    @Field( type => [Pet])
+//    @OneToMany(() => Pet, pet => pet.owner)
+//    pets?: Pet[];
 }
 
 export { User };

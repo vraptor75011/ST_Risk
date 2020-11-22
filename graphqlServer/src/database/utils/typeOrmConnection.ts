@@ -1,6 +1,6 @@
 import { createConnection } from 'typeorm';
-import { Pet } from '../Pet/pet.model';
-import { User } from '../User/user.model';
+import { Pet } from '../pet/pet.model';
+import { User } from '../user/user.model';
 
 const typeOrmConnection = async (databaseName:string) => {
     const connection = await createConnection({
