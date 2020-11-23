@@ -1,4 +1,4 @@
-import { typeOrmConfigWithConnectionName } from './orm.config.with.connection.name';
+import typeOrmConfig from "./orm.config";
 
-export = typeOrmConfigWithConnectionName;
+export = typeOrmConfig();
 

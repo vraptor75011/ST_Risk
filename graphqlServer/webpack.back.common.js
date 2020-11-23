@@ -6,8 +6,8 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'umd',
-    //    publicPath: '/',
+    publicPath: '/',
+    //    libraryTarget: 'commonjs',
   },
   module: {
     rules: [
@@ -30,7 +30,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts'],
+    //    modules: ['node_modules', path.resolve(__dirname, 'src')],
   },
   plugins: [
     new CopyPlugin({

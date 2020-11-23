@@ -1,7 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 import * as entities from './entities.index';
 import * as migrations from './migrations.index';
-console.log(entities, migrations, process.env);
 
 const typeOrmConfig = (): ConnectionOptions => {
     return {
