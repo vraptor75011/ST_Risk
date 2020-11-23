@@ -1,9 +1,9 @@
 //import { typeOrmConfig } from './orm.config';
 import { ConnectionOptions } from 'typeorm';
-import { Pet } from '../pet/pet.model';
-import { User } from '../user/user.model';
+import * as entities from './entities.index';
+import * as migrations from './migrations.index';
+
 export function typeOrmConfigWithConnectionName(): ConnectionOptions  {
-//    console.log("ORM CONFIG", process.env);
 
     const connectionConfig:ConnectionOptions = {
         //        ...typeOrmConfig,
@@ -15,7 +15,8 @@ export function typeOrmConfigWithConnectionName(): ConnectionOptions  {
         password: process.env.PG_PASSWORD,
         ssl: (process.env.PG_USE_SSL === 'true'),
         //    ssl: process.env.PG_USE_SSL as boolean | undefined,
-            entities: [User, Pet],
+//            entities: [User, Pet],
+        entities: Object.values(entities),
         //    entities: ["./src/**/?(*.)+(model).[tj]s?"],
 //        entities: ["/../**/*.model.[tj]s?"],
         synchronize: false,// not in production mode,
@@ -23,10 +24,11 @@ export function typeOrmConfigWithConnectionName(): ConnectionOptions  {
         logger: 'advanced-console',
         //        dropSchema: true, // not in productin mode
         migrationsTableName: 'migrations',
-        migrations: [
-            "./src/database/migrations/*{.ts,.js}"
+        migrations: Object.values(migrations),
+//        migrations: [
+//            __dirname +  "/../../database/migrations/*{.ts,.js}"
             //            "./dist/migrations{.ts,.js}"
-        ],
+ //       ],
         cli: {
             migrationsDir: './src/database/migrations'
         },

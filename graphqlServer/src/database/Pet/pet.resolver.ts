@@ -1,4 +1,6 @@
 import { Query, Resolver } from "type-graphql";
+import { petRepository } from '../utils';
+import { Pet } from './pet.model';
 
 @Resolver()
 export class PetResolver {
@@ -6,8 +8,8 @@ export class PetResolver {
     hello() {
         return "world"
     }
-//    @Query(returns => [Pet])
-//    pets() {
-//        return petRepository.find();
-//    }
+    @Query(returns => [Pet])
+    pets() {
+        return petRepository.find();
+    }
 }

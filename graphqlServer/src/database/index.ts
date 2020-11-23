@@ -1,21 +1,19 @@
 import { buildSchema } from 'type-graphql';
-import { createConnection } from 'typeorm';
+import { Container } from 'typedi';
+import { createConnection, useContainer } from 'typeorm';
 import { PetResolver } from './pet/pet.resolver';
 import { UserResolver } from './user/user.resolver';
 import initRepositories from './utils/index';
-import { typeOrmConfigWithConnectionName } from './utils/orm.config.with.connection.namecopy';
+import typeOrmConfig from './utils/orm.config';
 
-//useContainer(Container);
+useContainer(Container);
 
 async function bootstrap() {
-    console.log('BOOTSTRAP');
+    console.log(typeOrmConfig);
 
-    const connection = await createConnection(typeOrmConfigWithConnectionName())
-    console.log('BOOTSTRAP');
+    const connection = await createConnection(typeOrmConfig());
 
     initRepositories(connection);
-
-    console.log('BOOTSTRAP');
  
     const schema = await buildSchema({
         resolvers: [PetResolver, UserResolver],
@@ -24,7 +22,7 @@ async function bootstrap() {
             commentDescriptions: true,
             sortedSchema: false, // by default the printed schema is sorted alphabetically
         },
-//        container: Container,
+        container: Container,
     });
     
     return {

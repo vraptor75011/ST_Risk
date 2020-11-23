@@ -1,8 +1,8 @@
 import { Connection, createConnection, QueryRunner } from "typeorm";
-import { typeOrmConfigWithConnectionName } from '../../database/utils/orm.config.with.connection.name';
+import { typeOrmConfig } from '../../database/utils/orm.config';
 
 const initConnectionPerTest = async ():Promise<{connection:Connection, queryRunner:QueryRunner}> => {
-    const connection = await createConnection(typeOrmConfigWithConnectionName);
+    const connection = await createConnection(typeOrmConfig);
     const queryRunner = connection.createQueryRunner();  
     return { connection, queryRunner }
 }

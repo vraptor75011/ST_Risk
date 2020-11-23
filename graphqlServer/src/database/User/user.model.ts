@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from "type-graphql";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-//import { Pet } from '../pet/pet.model';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Pet } from '../pet/pet.model';
 
 // User Model
 @ObjectType()
@@ -22,9 +22,9 @@ class User {
     @CreateDateColumn()
     created_at: Date;
 
-//    @Field( type => [Pet])
-//    @OneToMany(() => Pet, pet => pet.owner)
-//    pets?: Pet[];
+    @Field( type => [Pet])
+    @OneToMany(() => Pet, pet => pet.owner)
+    pets?: Pet[];
 }
 
 export { User };

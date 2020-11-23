@@ -1,13 +1,15 @@
+import { ApolloServer, Config } from 'apollo-server-koa';
 import * as dotenv from 'dotenv';
 import { GraphQLSchema } from 'graphql';
-import Koa from "koa";
-import KoaRouter from "koa-router";
+import * as Koa from "koa";
+import * as KoaRouter from "koa-router";
 import 'reflect-metadata';
 import bootstrap from './database/index';
 
 
 async function main() {
   dotenv.config({ path: process.env.PWD + '/.env' });
+  console.log("MAIN",process.env.PWD);
 
   bootstrap().then(({ schema }) => {
     const app = createApp(schema);
@@ -20,20 +22,20 @@ async function main() {
 function createApp(schema:GraphQLSchema): Koa {
     const app = new Koa();
     const router = new KoaRouter();
-/*     const config : Config = {
+     const config : Config = {
         schema: schema,
         introspection: true,//these lines are required to use the gui 
         playground: true,//   of playground    
     }
- */
-//    const server : ApolloServer = new ApolloServer(config);
+ 
+    const server : ApolloServer = new ApolloServer(config);
     
     router.get("/healthz", ctxt => {
       ctxt.body = "ok";
     });
   
-//    router.post("/graphql", server.getMiddleware());
-//    router.get("/graphql", server.getMiddleware());
+    router.post("/graphql", server.getMiddleware());
+    router.get("/graphql", server.getMiddleware());
   
     app.use(router.routes());
     app.use(router.allowedMethods());

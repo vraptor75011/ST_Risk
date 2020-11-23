@@ -1,17 +1,7 @@
-import { Field, ID, ObjectType, registerEnumType } from "type-graphql";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-//import { User } from '../user/user.model';
-
-export enum Species {
-    BIRDS = "BIRDS",
-    FISH = "FISH",
-    MAMMALS = "MAMMALS",
-    REPTILES = "REPTILES"
-}
-
-registerEnumType(Species, {
-    name: "Species"
-})
+import { Field, ID, ObjectType } from "type-graphql";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from '../user/user.model';
+import { Species } from './pet.enum';
 
 @ObjectType()
 @Entity('pets')
@@ -32,9 +22,9 @@ class Pet {
     @CreateDateColumn()
     created_at: Date
 
-//    @Field(type => User )
-//    @ManyToOne(type => User, user => user.pets)
-//    owner?: User;
+    @Field(type => User )
+    @ManyToOne(type => User, user => user.pets)
+    owner?: User;
 }
 
 export { Pet };
