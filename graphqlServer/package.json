@@ -15,7 +15,7 @@
     "typeorm:cli": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -f ./src/database/utils/orm.config.migrations.ts",
     "typeorm:cli2": "node --require ts-node/register ./node_modules/typeorm/cli -f ./src/database/utils/orm.config.migrations.ts",
     "migration-generate": "yarn run typeorm:cli2 migration:generate -n",
-    "migration-run": "yarn run typeorm:cli2 migration:run",
+    "migration-run": "yarn run typeorm:cli2 migration:run"
   },
   "author": "",
   "license": "ISC",
