@@ -2,16 +2,31 @@ import * as fg from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
 
-function createMigrationsIndex() {
-  console.log('Creating migrations.index.ts');
-    const src = `${path.dirname(__dirname)}/src`;
+/**
+ * All paths relative to root dir
+ *
+ */
+
+interface migrationsParams {
+  migrationsSrc: string;
+  migrationsGlobPattern: string;
+  migrationsOut: string;
+  migrationsOutFileName: string;
+}
+
+export { migrationsParams };
+
+function createMigrationsIndex(params: migrationsParams): void {
+  const rootDir = path.resolve(__dirname, './../..');
+  console.log('Creating migrations index');
+  const src = path.resolve(rootDir, params.migrationsSrc);
   if (!fs.existsSync(src)) {
     console.log(`App api cannot be found. Path not exist: ${src}`);
     process.exit(1);
   }
-  const outDir = `${src}/database/utils`;
-  const tmpFile = `${outDir}/tmp.migrations.index.ts`;
-  const outFile = `${outDir}/migrations.index.ts`;
+  const outDir = path.resolve(rootDir, params.migrationsOut);
+  const tmpFile = path.resolve(outDir, 'tmp.' + params.migrationsOutFileName);
+  const outFile = path.resolve(outDir, params.migrationsOutFileName);
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }

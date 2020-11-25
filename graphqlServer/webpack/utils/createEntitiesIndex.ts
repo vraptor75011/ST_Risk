@@ -2,16 +2,30 @@ import * as fg from 'fast-glob';
 import * as fs from 'fs';
 import * as path from 'path';
 
-function createEntitiesIndex() {
-  console.log('Creating entity.index.ts');
-    const src = `${path.dirname(__dirname)}/src`;
+/**
+ * All paths relative to root dir
+ *
+ */
+interface entitiesParams {
+  entitiesSrc: string;
+  entitiesGlobPattern: string;
+  entitiesOut: string;
+  entitiesOutFileName: string;
+}
+
+export { entitiesParams };
+
+function createEntitiesIndex(params: entitiesParams): void {
+  const rootDir = path.resolve(__dirname, './../..');
+  console.log('Creating entities index');
+  const src = path.resolve(rootDir, params.entitiesSrc);
   if (!fs.existsSync(src)) {
     console.log(`App api cannot be found. Path not exist: ${src}`);
     process.exit(1);
   }
-  const outDir = `${src}/database/utils`;
-  const tmpFile = `${outDir}/tmp.entities.index.ts`;
-  const outFile = `${outDir}/entities.index.ts`;
+  const outDir = path.resolve(rootDir, params.entitiesOut);
+  const tmpFile = path.resolve(outDir, 'tmp.' + params.entitiesOutFileName);
+  const outFile = path.resolve(outDir, params.entitiesOutFileName);
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir);
   }

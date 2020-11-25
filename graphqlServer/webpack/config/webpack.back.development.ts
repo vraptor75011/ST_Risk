@@ -6,14 +6,14 @@ import { merge } from "webpack-merge";
 import * as nodeExternals from 'webpack-node-externals';
 import commonBackEndConfig from './webpack.back.common';
 
-const developmentBackEndConfig = merge<Configuration>(commonBackEndConfig,
+const developmentBackEndConfig:Configuration = merge<Configuration>(commonBackEndConfig,
   {
     mode: 'development',
     cache: false,
     watch: true,
     devtool: 'inline-source-map',
     entry: {
-      backend: path.join(__dirname, '/../src/index.ts'),
+      backend: path.join(__dirname, '/../../src/index.ts'),
     },
     externals: [
       nodeExternals({
@@ -33,6 +33,5 @@ const developmentBackEndConfig = merge<Configuration>(commonBackEndConfig,
   
 
 );
-console.log(developmentBackEndConfig);
 
 export default developmentBackEndConfig
