@@ -18,7 +18,7 @@ const entities: entitiesParams = {
   entitiesSrc: 'src',
   entitiesGlobPattern: '**/*.model.ts',
   entitiesOut: 'src/database/utils',
-  entitiesOutFileName: 'migrations.index.ts',
+  entitiesOutFileName: 'entities.index.ts',
 };
 
 const migrations: migrationsParams = {

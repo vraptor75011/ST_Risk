@@ -6,7 +6,6 @@
 type Query {
   hello: String!
   pets: [Pet!]!
-  users: [User!]!
 }
 
 type Pet {
@@ -33,13 +32,4 @@ type User {
   country_code: String!
   created_at: DateTime!
   pets: [Pet!]!
-}
-
-type Mutation {
-  addUser(data: CreateUserInput!): User!
-}
-
-input CreateUserInput {
-  full_name: String!
-  country_code: String!
 }
